@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beer Scholar — Homepage Mockups</title>
+<link rel="icon" href="assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#AE841F;--navy:#02394F;--green:#224C37;--orange:#AF561B;--yellow:#F3C645;--paper:#f4efe4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Raleway",system-ui,sans-serif;background:var(--navy);color:#eaf0f2;line-height:1.6;min-height:100vh}
+  .wrap{max-width:1080px;margin:0 auto;padding:56px 28px}
+  header{text-align:center;margin-bottom:48px}
+  header img{height:56px;margin-bottom:22px}
+  h1{font-size:2.2rem;font-weight:900;margin-bottom:10px}
+  header p{color:#aebfc7;max-width:560px;margin:0 auto;font-size:1.05rem}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{background:#0a4157;border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden;transition:.18s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .swatch{height:90px;display:flex}
+  .swatch span{flex:1}
+  .card .b{padding:24px}
+  .tag{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow)}
+  .card h2{font-size:1.4rem;margin:6px 0 10px;color:#fff}
+  .card p{font-size:.94rem;color:#c3d0d6;margin-bottom:18px}
+  .card ul{list-style:none;margin-bottom:22px}
+  .card li{font-size:.86rem;color:#aebfc7;padding:4px 0 4px 18px;position:relative}
+  .card li:before{content:"—";position:absolute;left:0;color:var(--gold)}
+  .btn{display:block;text-align:center;background:var(--gold);color:#fff;font-weight:800;padding:14px;border-radius:6px;text-decoration:none;margin-top:auto}
+  .btn:hover{background:#96711a}
+  .note{margin-top:40px;background:rgba(255,255,255,.06);border-radius:10px;padding:22px 26px;font-size:.92rem;color:#c3d0d6}
+  .note b{color:#fff}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="assets/logo-full-white.svg" alt="Beer Scholar">
+    <h1>Homepage — 3 Directions</h1>
+    <p>Same real copy and brand assets, three different feels. Open each, then tell me which direction to build the full site on (mix-and-match welcome).</p>
+  </header>
+  <div class="grid">
+    <div class="card">
+      <div class="swatch"><span style="background:#02394F"></span><span style="background:#AE841F"></span><span style="background:#F3C645"></span></div>
+      <div class="b">
+        <div class="tag">Direction A</div>
+        <h2>The Authority</h2>
+        <p>Dark-blue, scholarly, credibility-first. Restrained and premium — leads with expertise and track record.</p>
+        <ul><li>Navy + gold, editorial</li><li>Stats bar, expert framing</li><li>Best if trust sells the exam</li></ul>
+        <a class="btn" href="direction-a-authority.html">Open Direction A →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch"><span style="background:#F3C645"></span><span style="background:#AF561B"></span><span style="background:#02394F"></span></div>
+      <div class="b">
+        <div class="tag">Direction B</div>
+        <h2>The Closer</h2>
+        <p>Bright, energetic, conversion-optimized. Urgency bar, pricing cards, big pass-rate proof — modernized but punchy.</p>
+        <ul><li>Yellow/orange CTAs</li><li>Urgency + pricing forward</li><li>Best for max conversions</li></ul>
+        <a class="btn" href="direction-b-closer.html">Open Direction B →</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch"><span style="background:#224C37"></span><span style="background:#AE841F"></span><span style="background:#f4efe4"></span></div>
+      <div class="b">
+        <div class="tag">Direction C</div>
+        <h2>The Craft Guide</h2>
+        <p>Warm, editorial, story-driven. Serif headlines, earthy palette, generous whitespace — approachable and least "salesy."</p>
+        <ul><li>Green/gold, magazine feel</li><li>Chris's story up front</li><li>Best for warmth + brand</li></ul>
+        <a class="btn" href="direction-c-craft.html">Open Direction C →</a>
+      </div>
+    </div>
+  </div>
+  <div class="note">
+    <b>All three:</b> use the real logo files, exact brand hex colors, and real homepage copy from the crawl. Every Kajabi link is stripped — CTAs point to the real page URLs, and the study-guide/opt-in forms are placeholders ready to wire to Kit. Nothing here is final; these are directions to react to.
+  </div>
+</div>
+</body>
+</html>
