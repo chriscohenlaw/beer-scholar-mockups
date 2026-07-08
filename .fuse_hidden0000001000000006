@@ -77,6 +77,7 @@
     <b>All three:</b> use the real logo files, exact brand hex colors, and real homepage copy from the crawl. Every Kajabi link is stripped — CTAs point to the real page URLs, and the study-guide/opt-in forms are placeholders ready to wire to Kit. Nothing here is final; these are directions to react to.
   </div>
 </div>
+{BTN}
 <a href="https://forms.gle/rczfMPLLCZUmVCdf6" target="_blank" rel="noopener" style="position:fixed;bottom:20px;right:20px;z-index:999;background:#AE841F;color:#fff;font-family:Raleway,system-ui,sans-serif;font-weight:800;font-size:.92rem;padding:13px 22px;border-radius:40px;box-shadow:0 6px 20px rgba(0,0,0,.32);text-decoration:none;">💬 Give feedback</a>
 </body>
 </html>
