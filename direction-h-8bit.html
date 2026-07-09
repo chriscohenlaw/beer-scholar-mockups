@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEER SCHOLAR: THE QUEST — Direction H: 8-Bit</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#02394F; --sky2:#04506e; --gold:#F3C645; --golddark:#AE841F;
+    --green:#3fae5a; --red:#e84b3c; --white:#fffef2; --black:#0f0f12;
+    --px:"Press Start 2P",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--px);color:var(--white);background:var(--sky);line-height:1.9;font-size:12px;image-rendering:pixelated}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.5;font-weight:400}
+  /* pixel border helper: chunky double box */
+  .pxbox{border:4px solid var(--white);box-shadow:0 0 0 4px var(--black),8px 8px 0 4px var(--black);background:var(--sky2)}
+  .btn{display:inline-block;font-family:var(--px);font-size:11px;padding:16px 22px;border:4px solid var(--black);box-shadow:inset -4px -4px 0 rgba(0,0,0,.35),4px 4px 0 var(--black);cursor:pointer;transition:.05s;text-align:center}
+  .btn:active,.btn:hover{transform:translate(2px,2px);box-shadow:inset -4px -4px 0 rgba(0,0,0,.35),2px 2px 0 var(--black)}
+  .btn-gold{background:var(--gold);color:var(--black)}
+  .btn-green{background:var(--green);color:var(--black)}
+  .btn-red{background:var(--red);color:var(--white)}
+  .blink{animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .kick{color:var(--gold);font-size:10px;letter-spacing:.08em}
+
+  /* NAV — game HUD */
+  header{position:sticky;top:0;z-index:50;background:var(--black);border-bottom:4px solid var(--gold)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:14px}
+  nav .logo{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--gold)}
+  nav .logo img{height:34px;image-rendering:pixelated}
+  nav ul{display:flex;gap:20px;list-style:none;align-items:center}
+  nav ul a{font-size:9px;color:var(--white)}
+  nav ul a:hover{color:var(--gold)}
+  @media(max-width:1000px){nav ul{display:none}}
+
+  /* HERO — title screen */
+  .hero{padding:90px 0 70px;text-align:center;position:relative;overflow:hidden}
+  /* pixel clouds */
+  .cloud{position:absolute;background:var(--white);width:60px;height:16px;box-shadow:16px -12px 0 var(--white),32px 0 0 var(--white),-16px -4px 0 var(--white);opacity:.85}
+  .c1{top:70px;left:8%;animation:drift 38s linear infinite}
+  .c2{top:150px;right:12%;animation:drift 52s linear infinite reverse}
+  @keyframes drift{from{transform:translateX(-140px)}to{transform:translateX(calc(100vw + 140px))}}
+  .hero .title{font-size:clamp(20px,4.6vw,44px);color:var(--gold);text-shadow:4px 4px 0 var(--black);margin:10px 0 6px}
+  .hero .subtitle{font-size:clamp(12px,2vw,18px);color:var(--white);text-shadow:3px 3px 0 var(--black);margin-bottom:30px}
+  .hero .tm{font-size:8px;color:#9fc3d2;margin-bottom:34px}
+  .hero .press{font-size:13px;color:var(--white);margin:34px 0 26px}
+  .hero .cta-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .hud{display:inline-flex;gap:26px;background:var(--black);border:4px solid var(--white);padding:14px 24px;margin-top:44px;flex-wrap:wrap;justify-content:center}
+  .hud .h{font-size:9px;color:var(--white)}
+  .hud b{color:var(--gold);font-size:12px;display:block;margin-bottom:4px}
+
+  /* ground strip */
+  .ground{height:34px;background:repeating-linear-gradient(90deg,var(--golddark) 0 17px,#8a681a 17px 34px);border-top:4px solid var(--black)}
+
+  section{padding:76px 0}
+  .head{text-align:center;max-width:640px;margin:0 auto 44px}
+  .head h2{font-size:clamp(14px,2.6vw,22px);color:var(--gold);text-shadow:3px 3px 0 var(--black);margin:12px 0}
+  .head p{font-size:10px;color:#cfe3ec}
+
+  /* POWER-UPS (benefits) */
+  .pups{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .pup{background:var(--black);border:4px solid var(--white);padding:28px 22px;text-align:center}
+  .pup .icon{font-size:30px;margin-bottom:16px;display:block}
+  .pup h3{font-size:11px;color:var(--gold);margin-bottom:12px}
+  .pup p{font-size:9px;color:#d8e8ef;line-height:2}
+  @media(max-width:820px){.pups{grid-template-columns:1fr}}
+
+  /* LEVEL SELECT (courses) */
+  .lvls{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .lvl{background:var(--sky2);border:4px solid var(--white);box-shadow:8px 8px 0 var(--black);padding:0;display:flex;flex-direction:column}
+  .lvl .head2{background:var(--black);padding:16px;text-align:center;border-bottom:4px solid var(--white)}
+  .lvl .head2 .w{font-size:9px;color:var(--gold)}
+  .lvl .head2 h3{font-size:12px;color:var(--white);margin-top:8px}
+  .lvl .body{padding:22px;display:flex;flex-direction:column;flex:1}
+  .lvl .diff{font-size:8px;color:var(--gold);margin-bottom:14px}
+  .lvl ul{list-style:none;margin-bottom:22px;flex:1}
+  .lvl li{font-size:9px;padding:7px 0 7px 20px;position:relative;line-height:1.8}
+  .lvl li:before{content:"►";position:absolute;left:0;color:var(--gold);font-size:8px;top:9px}
+  .lvl .btn{font-size:9px}
+  @media(max-width:900px){.lvls{grid-template-columns:1fr}}
+
+  /* PLAYER 1 (bio) */
+  .p1{background:var(--black);border-top:4px solid var(--gold);border-bottom:4px solid var(--gold)}
+  .p1 .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:46px;align-items:center}
+  .p1 .sprite{border:4px solid var(--white);box-shadow:8px 8px 0 var(--golddark)}
+  .p1 .sprite img{width:100%;height:360px;object-fit:cover;object-position:60% 26%;image-rendering:auto}
+  .p1 h2{font-size:16px;color:var(--gold);margin:12px 0 20px;line-height:1.7}
+  .p1 p{font-size:10px;color:#d8e8ef;margin-bottom:16px;line-height:2}
+  .p1 .stats{margin-top:20px}
+  .p1 .stat{margin-bottom:10px}
+  .p1 .stat .label{font-size:8px;color:var(--white);margin-bottom:5px;display:block}
+  .p1 .bar{height:14px;border:3px solid var(--white);background:var(--sky)}
+  .p1 .bar span{display:block;height:100%;background:var(--gold)}
+  @media(max-width:860px){.p1 .wrap{grid-template-columns:1fr;gap:30px}}
+
+  /* HIGH SCORES (testimonials) */
+  .scores{background:var(--sky2);border:4px solid var(--white);box-shadow:8px 8px 0 var(--black);padding:34px;max-width:860px;margin:0 auto}
+  .scores .title2{text-align:center;font-size:13px;color:var(--gold);margin-bottom:26px}
+  .srow{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:start;padding:16px 0;border-bottom:3px dashed rgba(255,255,255,.25)}
+  .srow:last-child{border-bottom:none}
+  .srow .rank{font-size:13px;color:var(--gold)}
+  .srow .q{font-size:9px;color:#e6f1f5;line-height:1.9;margin-bottom:6px}
+  .srow .who{font-size:8px;color:var(--gold)}
+  .srow .pts{font-size:10px;color:var(--green);white-space:nowrap}
+  @media(max-width:640px){.srow{grid-template-columns:1fr}}
+
+  /* WARP ZONES (blog) */
+  .warps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .warp{background:var(--black);border:4px solid var(--white);overflow:hidden;transition:.06s}
+  .warp:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--golddark)}
+  .warp .ph{height:150px;overflow:hidden;border-bottom:4px solid var(--white)}
+  .warp .ph img{width:100%;height:100%;object-fit:cover;filter:contrast(1.15) saturate(1.4)}
+  .warp .c{padding:18px}
+  .warp .k{font-size:8px;color:var(--green)}
+  .warp h3{font-size:9px;color:var(--white);margin-top:10px;line-height:1.9}
+  @media(max-width:900px){.warps{grid-template-columns:1fr}}
+
+  /* CONTINUE? (optin) */
+  .cont{text-align:center}
+  .cont .pxbox{max-width:640px;margin:0 auto;padding:40px 34px}
+  .cont h2{font-size:15px;color:var(--gold);margin-bottom:8px}
+  .cont .timer{font-size:22px;color:var(--red);margin:12px 0 18px}
+  .cont p{font-size:9px;color:#d8e8ef;margin-bottom:24px;line-height:2}
+  .cont form{display:flex;gap:12px;max-width:440px;margin:0 auto}
+  .cont input{flex:1;padding:14px;background:var(--black);border:4px solid var(--white);color:var(--gold);font-family:var(--px);font-size:9px}
+  .cont input::placeholder{color:#6f8f9d}
+  @media(max-width:560px){.cont form{flex-direction:column}}
+
+  footer{background:var(--black);padding:40px 0 26px;font-size:8px;color:#9fc3d2;border-top:4px solid var(--gold)}
+  footer .row{display:flex;flex-wrap:wrap;gap:14px 22px;margin-bottom:24px}
+  footer a:hover{color:var(--gold)}
+  footer .disc{line-height:2.2;border-top:3px dashed rgba(255,255,255,.2);padding-top:18px}
+
+  .badge{position:fixed;bottom:16px;left:16px;background:var(--red);color:var(--white);font-family:var(--px);font-size:8px;padding:10px 14px;z-index:99;border:3px solid var(--white);box-shadow:3px 3px 0 var(--black)}
+</style>
+</head>
+<body>
+<div class="badge">DIRECTION H · 8-BIT</div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#"><img src="assets/logo-mark-color.svg" alt="Beer Scholar">BEER SCHOLAR</a>
+      <ul>
+        <li><a href="/beer-server">WORLD 1</a></li>
+        <li><a href="/certified-cicerone">WORLD 2</a></li>
+        <li><a href="/ac-coaching">WORLD 3</a></li>
+        <li><a href="/blog">WARP ZONE</a></li>
+        <li><a href="/login">CONTINUE</a></li>
+      </ul>
+      <a class="btn btn-gold" href="#study-guide" style="padding:10px 14px;font-size:8px">FREE GUIDE</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="wrap">
+    <div class="kick">ADVANCED CICERONE® CHRIS COHEN PRESENTS</div>
+    <h1 class="title">BEER SCHOLAR</h1>
+    <div class="subtitle">THE QUEST FOR CERTIFICATION</div>
+    <div class="tm">© 2014–2026 BEER SCHOLAR LLC · LICENSED BY NOBODY · 1 PLAYER GAME</div>
+    <div class="press blink">▶ PRESS START TO STUDY ◀</div>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="/certified-cicerone">START: CC EXAM</a>
+      <a class="btn btn-green" href="/beer-server">START: CBS EXAM</a>
+    </div>
+    <div class="hud">
+      <div class="h"><b>99%</b>PASS RATE</div>
+      <div class="h"><b>4400+</b>PLAYERS CERTIFIED</div>
+      <div class="h"><b>2014</b>ARCADE OPENED</div>
+      <div class="h"><b>×3</b>EXAM LEVELS</div>
+    </div>
+  </div>
+</section>
+<div class="ground"></div>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">— ITEM SHOP —</div>
+      <h2>GRAB THE POWER-UPS. SKIP THE GRIND.</h2>
+      <p>NO STACK OF TEXTBOOK SIDE-QUESTS. NO GUESSING THE BOSS PATTERNS. ONE CLEAR PATH FROM NOOB TO CERTIFIED.</p>
+    </div>
+    <div class="pups">
+      <div class="pup"><span class="icon">🍄</span><h3>XP BOOST LESSONS</h3><p>SHORT VIDEO LESSONS THAT TRACK THE SYLLABUS LEVEL-BY-LEVEL, AT THE EXACT DEPTH THE EXAM TESTS. NO FILLER EPISODES.</p></div>
+      <div class="pup"><span class="icon">⭐</span><h3>PRACTICE MODE</h3><p>FULL PRACTICE EXAMS THAT MIRROR THE FINAL BOSS, PLUS FLASHCARD DECKS. CC PLAYERS GET BRAINSCAPE DECKS DESIGNED BY PHDs.</p></div>
+      <div class="pup"><span class="icon">🗡️</span><h3>LEGENDARY GUIDE</h3><p>BUILT BY ADVANCED CICERONE® CHRIS COHEN — THE STRATEGY GUIDE MOST CERTIFIED CICERONES USED TO BEAT THE GAME.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">— SELECT WORLD —</div>
+      <h2>CHOOSE YOUR LEVEL</h2>
+    </div>
+    <div class="lvls">
+      <div class="lvl">
+        <div class="head2"><div class="w">WORLD 1-1</div><h3>CERTIFIED BEER SERVER</h3></div>
+        <div class="body">
+          <div class="diff">DIFFICULTY: ★☆☆ — BEATABLE IN 1–2 DAYS</div>
+          <ul>
+            <li>SYLLABUS-TRACKED VIDEO LESSONS</li>
+            <li>QUIZ CHECKPOINT EVERY LESSON</li>
+            <li>EXAM-DAY TIPS &amp; TRICKS</li>
+            <li>5 FULL PRACTICE TESTS</li>
+          </ul>
+          <a class="btn btn-green" href="/beer-server">ENTER WORLD 1</a>
+        </div>
+      </div>
+      <div class="lvl">
+        <div class="head2"><div class="w">WORLD 2-1 · MOST PLAYED</div><h3>CERTIFIED CICERONE®</h3></div>
+        <div class="body">
+          <div class="diff">DIFFICULTY: ★★☆ — FLAGSHIP QUEST · $798</div>
+          <ul>
+            <li>FULL VIDEO COURSE + PRACTICE TESTS</li>
+            <li>BRAINSCAPE FLASHCARD DECKS</li>
+            <li>WEEKLY LIVE Q&amp;As + PARTY CHAT</li>
+            <li>EVERYTHING MAPPED TO THE SYLLABUS</li>
+          </ul>
+          <a class="btn btn-gold" href="/certified-cicerone">ENTER WORLD 2</a>
+        </div>
+      </div>
+      <div class="lvl">
+        <div class="head2"><div class="w">WORLD 3-1</div><h3>ADVANCED CICERONE®</h3></div>
+        <div class="body">
+          <div class="diff">DIFFICULTY: ★★★ — CO-OP MODE · PASS GUARANTEED</div>
+          <ul>
+            <li>3-MONTH AC BOOTCAMP W/ SCOTT FIELDER</li>
+            <li>3 MONTHS OF LIVE Q&amp;As</li>
+            <li>2 FULL PRACTICE AC EXAMS</li>
+            <li>DIRECT LINE TO CHRIS &amp; SCOTT</li>
+          </ul>
+          <a class="btn btn-red" href="/ac-coaching">ENTER WORLD 3</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p1">
+  <div class="wrap">
+    <div class="sprite"><img src="assets/chris.png" alt="Player 1: Chris Cohen"></div>
+    <div>
+      <div class="kick">— PLAYER 1 —</div>
+      <h2>CHRIS COHEN<br>THE BEER SCHOLAR</h2>
+      <p>I WAS A NERVOUS, OVER-PREPARED PLAYER ONCE TOO — GRINDING BLIND WITH NO STRATEGY GUIDE. SO AFTER BEATING THE GAME, I WROTE ONE.</p>
+      <p>SINCE 2014, MOST CERTIFIED CICERONES USED BEER SCHOLAR TO CLEAR THEIR RUNS.</p>
+      <div class="stats">
+        <div class="stat"><span class="label">BEER KNOWLEDGE</span><div class="bar"><span style="width:98%"></span></div></div>
+        <div class="stat"><span class="label">EXAM STRATEGY</span><div class="bar"><span style="width:96%"></span></div></div>
+        <div class="stat"><span class="label">LAWYER STUFF (ESQ.)</span><div class="bar"><span style="width:88%"></span></div></div>
+        <div class="stat"><span class="label">BJCP JUDGING (NATIONAL)</span><div class="bar"><span style="width:93%"></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="scores">
+      <div class="title2">★ HIGH SCORES ★</div>
+      <div class="srow">
+        <div class="rank">1ST</div>
+        <div><div class="q">"THE PRACTICE EXAMS ALONE ARE WORTH EVERY PENNY — I PASSED WITH A 93% AND IT REALLY BOOSTED MY CONFIDENCE."</div><div class="who">MICHELE BEST-MILLER · CBS · BURLINGTON, WA</div></div>
+        <div class="pts">93,000 PTS</div>
+      </div>
+      <div class="srow">
+        <div class="rank">2ND</div>
+        <div><div class="q">"IT HELPED ME SMOKE THE EXAM LIKE THE PEOPLE OF BAMBERG SMOKE THEIR MALT OVER BEECHWOOD."</div><div class="who">GRAHAM FRIZZELL · CC · PERTH, AUSTRALIA</div></div>
+        <div class="pts">88,700 PTS</div>
+      </div>
+      <div class="srow">
+        <div class="rank">3RD</div>
+        <div><div class="q">"PASSED THE AC TASTING EXAM WITH 86%. THE PRACTICE SESSIONS WERE SCARIER THAN THE REAL THING."</div><div class="who">STEVE MIRANDA · CC · ORANGE COUNTY, CA</div></div>
+        <div class="pts">86,000 PTS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">— WARP ZONE —</div>
+      <h2>LATEST BLOG DROPS</h2>
+    </div>
+    <div class="warps">
+      <a class="warp" href="/blog/brews-for-new-avenues-auction-beervana-vacation">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/d47a6f-1df8-1264-a55-a378856225c3_Image_8-15-24_at_8.15_AM.jpg" alt="" loading="lazy"></div>
+        <div class="c"><div class="k">SIDE QUEST</div><h3>BREWS FOR NEW AVENUES X BEER SCHOLAR COLLAB AUCTION: A BEER-SOAKED WEEKEND IN PORTLAND, OR!</h3></div>
+      </a>
+      <a class="warp" href="/blog/cup-cicerone-uses-for-tasting-exam">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/8845447-8d54-dd0b-c4a4-f40cef501ca_Cup_Cicerone_uses_exam.png" alt="" loading="lazy"></div>
+        <div class="c"><div class="k">ITEM GUIDE</div><h3>WHAT CUPS DOES CICERONE® USE ON EXAMS?</h3></div>
+      </a>
+      <a class="warp" href="/blog/advanced-cicerone-study-coaching">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/0b233e-2b74-77b7-b613-2458cd4620_The_AC_Coaching_Program_flow_-_Blog_Thumb.png" alt="" loading="lazy"></div>
+        <div class="c"><div class="k">BOSS GUIDE</div><h3>WHAT DOES THE ADVANCED CICERONE® COACHING PROGRAM LOOK LIKE?</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cont" id="study-guide">
+  <div class="wrap">
+    <div class="pxbox">
+      <h2>CONTINUE?</h2>
+      <div class="timer blink">9 . . . 8 . . . 7 . . .</div>
+      <p>INSERT YOUR EMAIL TO UNLOCK FREE FLASHCARDS &amp; STUDY RESOURCES — CBS + CC PREP STARTERS PLUS THE SIX PACK NEWSLETTER.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('input').value='1-UP! CHECK YOUR INBOX.'">
+        <input type="email" placeholder="PLAYER@EMAIL.COM" required>
+        <button class="btn btn-gold" type="submit">INSERT COIN</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a href="/beer-server">CBS</a><a href="/certified-cicerone">CC</a><a href="/ac-coaching">AC</a><a href="/employee-staff-group-training">STAFF TRAINING</a><a href="/about">ABOUT</a><a href="/blog">BLOG</a><a href="/six-pack-newsletter">SIX PACK</a><a href="/faq">FAQ</a><a href="/contact">CONTACT</a><a href="/login">LOG IN</a><a href="/terms-of-service">TERMS</a><a href="/privacy-policy">PRIVACY</a>
+    </div>
+    <div class="disc">BEER SCHOLAR IS NOT AFFILIATED WITH, ENDORSED BY, OR SPONSORED BY THE CICERONE® CERTIFICATION PROGRAM. CICERONE®, CERTIFIED CICERONE®, AND ADVANCED CICERONE® ARE REGISTERED TRADEMARKS OF THE CRAFT BEER INSTITUTE. © BEER SCHOLAR LLC &amp; CHRISTOPHER COHEN, ESQ. ALL RIGHTS RESERVED. ↑↑↓↓←→←→BA</div>
+  </div>
+</footer>
+<a href="https://forms.gle/rczfMPLLCZUmVCdf6" target="_blank" rel="noopener" style="position:fixed;bottom:20px;right:20px;z-index:999;background:#F3C645;color:#0f0f12;font-family:'Press Start 2P',monospace;font-size:9px;padding:14px 18px;border:3px solid #fffef2;box-shadow:4px 4px 0 #0f0f12;text-decoration:none;">💬 FEEDBACK</a>
+</body>
+</html>

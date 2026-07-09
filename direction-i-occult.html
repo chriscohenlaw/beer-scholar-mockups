@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Arcane Order of the Beer Scholar — Direction I: Occult</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#0b0a08; --crypt:#141210; --candle:#d4a439; --candle-dim:#8a6a24;
+    --blood:#7a2e1c; --bone:#e8dfc8; --ash:#9a8f76; --vein:rgba(212,164,57,.22);
+    --display:"Cinzel",serif; --body:"Cormorant Garamond",Georgia,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--bone);background:var(--abyss);line-height:1.8;font-size:19px;font-weight:400}
+  body:before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% -20%,rgba(212,164,57,.07),transparent 55%),radial-gradient(ellipse at 85% 110%,rgba(122,46,28,.10),transparent 50%);pointer-events:none;z-index:1}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--candle);line-height:1.25;letter-spacing:.04em}
+  .btn{display:inline-block;font-family:var(--display);font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:16px 34px;font-size:.72rem;transition:.25s;cursor:pointer;border:1px solid var(--candle-dim);text-align:center}
+  .btn-candle{background:linear-gradient(160deg,var(--candle),var(--candle-dim));color:var(--abyss);border-color:var(--candle)}
+  .btn-candle:hover{box-shadow:0 0 30px rgba(212,164,57,.4)}
+  .btn-void{background:transparent;color:var(--candle)}
+  .btn-void:hover{background:rgba(212,164,57,.1);box-shadow:0 0 20px rgba(212,164,57,.2)}
+  .sigil-rule{display:flex;align-items:center;justify-content:center;gap:18px;color:var(--candle-dim);margin:26px 0}
+  .sigil-rule:before,.sigil-rule:after{content:"";height:1px;width:110px;background:linear-gradient(90deg,transparent,var(--candle-dim))}
+  .sigil-rule:after{background:linear-gradient(90deg,var(--candle-dim),transparent)}
+  .kick{font-family:var(--display);font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ash)}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(11,10,8,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--vein)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+  nav .logo{display:flex;align-items:center;gap:14px}
+  nav .logo img{height:40px;filter:sepia(.6) saturate(1.4) drop-shadow(0 0 8px rgba(212,164,57,.4))}
+  nav .logo span{font-family:var(--display);font-size:.8rem;letter-spacing:.24em;color:var(--candle)}
+  nav ul{display:flex;gap:30px;list-style:none;align-items:center}
+  nav ul a{font-family:var(--display);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bone)}
+  nav ul a:hover{color:var(--candle);text-shadow:0 0 12px rgba(212,164,57,.6)}
+  @media(max-width:1000px){nav ul{display:none}}
+
+  /* HERO */
+  .hero{padding:110px 0 90px;text-align:center;position:relative;overflow:hidden}
+  .circle{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:640px;height:640px;border:1px solid var(--vein);border-radius:50%;pointer-events:none}
+  .circle:before{content:"";position:absolute;inset:36px;border:1px dashed rgba(212,164,57,.14);border-radius:50%}
+  .circle:after{content:"✦ ☽ ✦ ☾ ✦ ☽ ✦ ☾ ✦ ☽ ✦ ☾ ✦ ☽ ✦ ☾";position:absolute;inset:0;display:grid;place-items:center;font-size:.9rem;color:rgba(212,164,57,.25);letter-spacing:1.2em;animation:spin 90s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero .glyph{font-size:2rem;color:var(--candle);text-shadow:0 0 24px rgba(212,164,57,.7);margin-bottom:22px}
+  .hero h1{font-size:clamp(2.1rem,4.8vw,3.7rem);font-weight:900;margin-bottom:18px}
+  .hero h1 .whisper{display:block;font-size:.42em;font-weight:400;letter-spacing:.5em;color:var(--ash);margin-top:14px}
+  .hero .lead{font-size:1.3rem;font-style:italic;color:var(--bone);max-width:620px;margin:26px auto 38px}
+  .hero .cta-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .hero .vow{margin-top:44px;font-family:var(--display);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ash)}
+  .hero .vow b{color:var(--candle)}
+
+  /* RELIC BAND */
+  .band{border-top:1px solid var(--vein);border-bottom:1px solid var(--vein);background:var(--crypt)}
+  .band .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .band .r{padding:34px 18px;text-align:center;border-right:1px solid var(--vein)}
+  .band .r:last-child{border-right:none}
+  .band b{display:block;font-family:var(--display);font-size:2rem;color:var(--candle);text-shadow:0 0 16px rgba(212,164,57,.4)}
+  .band span{font-family:var(--display);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ash)}
+  @media(max-width:720px){.band .wrap{grid-template-columns:repeat(2,1fr)}.band .r:nth-child(2){border-right:none}}
+
+  section{padding:96px 0}
+  .head{text-align:center;max-width:660px;margin:0 auto 54px}
+  .head h2{font-size:clamp(1.7rem,3.2vw,2.5rem);margin:16px 0 14px}
+  .head p{font-size:1.15rem;font-style:italic;color:var(--ash)}
+
+  /* RITES (benefits) */
+  .rites{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .rite{background:var(--crypt);border:1px solid var(--vein);padding:40px 32px;text-align:center;position:relative;transition:.3s}
+  .rite:hover{border-color:var(--candle);box-shadow:0 0 34px rgba(212,164,57,.15)}
+  .rite .sym{font-size:2rem;color:var(--candle);margin-bottom:20px;text-shadow:0 0 18px rgba(212,164,57,.6)}
+  .rite h3{font-size:1.15rem;margin-bottom:14px}
+  .rite p{font-size:1rem;color:var(--bone)}
+  @media(max-width:820px){.rites{grid-template-columns:1fr}}
+
+  /* TAROT (courses) */
+  .tarot{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{background:linear-gradient(175deg,var(--crypt),#0e0c0a);border:1px solid var(--candle-dim);padding:8px;display:flex;flex-direction:column;transition:.3s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(0,0,0,.6),0 0 30px rgba(212,164,57,.12)}
+  .card .inner{border:1px solid var(--vein);padding:34px 28px;flex:1;display:flex;flex-direction:column;text-align:center}
+  .card .numeral{font-family:var(--display);font-size:.7rem;letter-spacing:.4em;color:var(--ash)}
+  .card .sym{font-size:2.4rem;color:var(--candle);margin:18px 0;text-shadow:0 0 20px rgba(212,164,57,.55)}
+  .card h3{font-size:1.25rem;margin-bottom:6px}
+  .card .name{font-style:italic;color:var(--ash);font-size:1.02rem;margin-bottom:22px}
+  .card ul{list-style:none;margin-bottom:26px;flex:1;text-align:left}
+  .card li{padding:8px 0 8px 26px;position:relative;font-size:.98rem;border-bottom:1px solid rgba(212,164,57,.1)}
+  .card li:before{content:"☙";position:absolute;left:0;color:var(--candle-dim)}
+  @media(max-width:900px){.tarot{grid-template-columns:1fr}}
+
+  /* HIEROPHANT (bio) */
+  .hier{background:var(--crypt);border-top:1px solid var(--vein);border-bottom:1px solid var(--vein)}
+  .hier .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .hier .portrait{position:relative;padding:10px;border:1px solid var(--candle-dim)}
+  .hier .portrait img{width:100%;height:430px;object-fit:cover;object-position:60% 26%;filter:sepia(.25) contrast(1.05) brightness(.92)}
+  .hier .portrait:after{content:"✦";position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--abyss);padding:0 14px;color:var(--candle);font-size:1.2rem}
+  .hier h2{font-size:2rem;margin:16px 0 20px}
+  .hier p{font-size:1.1rem;margin-bottom:16px}
+  .hier p em{color:var(--candle)}
+  .hier .titles{margin-top:24px;font-family:var(--display);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ash);line-height:2.4}
+  @media(max-width:860px){.hier .wrap{grid-template-columns:1fr;gap:36px}}
+
+  /* PROPHECIES (testimonials) */
+  .proph{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .pcard{background:var(--crypt);border:1px solid var(--vein);padding:36px 30px;position:relative}
+  .pcard:before{content:"❝";position:absolute;top:14px;left:22px;font-size:2.6rem;color:rgba(212,164,57,.3);font-family:Georgia,serif}
+  .pcard .q{font-size:1.08rem;font-style:italic;margin-bottom:20px;padding-top:16px}
+  .pcard .who{font-family:var(--display);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--candle)}
+  .pcard .role{font-size:.92rem;color:var(--ash);font-style:italic}
+  @media(max-width:900px){.proph{grid-template-columns:1fr}}
+
+  /* GRIMOIRE (blog) */
+  .grim{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .gitem{background:var(--crypt);border:1px solid var(--vein);overflow:hidden;transition:.3s}
+  .gitem:hover{border-color:var(--candle);box-shadow:0 0 30px rgba(212,164,57,.14)}
+  .gitem .ph{height:165px;overflow:hidden;border-bottom:1px solid var(--vein)}
+  .gitem .ph img{width:100%;height:100%;object-fit:cover;filter:sepia(.35) contrast(1.05) brightness(.85)}
+  .gitem .c{padding:24px 26px}
+  .gitem .k{font-family:var(--display);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--candle-dim)}
+  .gitem h3{font-size:1.08rem;margin-top:10px;line-height:1.5;color:var(--bone);font-family:var(--body);font-weight:600}
+  @media(max-width:900px){.grim{grid-template-columns:1fr}}
+
+  /* SUMMONING (optin) */
+  .summon{text-align:center;position:relative}
+  .summon .box{max-width:620px;margin:0 auto;border:1px solid var(--candle-dim);padding:52px 44px;background:radial-gradient(ellipse at 50% 0%,rgba(212,164,57,.08),transparent 70%),var(--crypt)}
+  .summon .glyph{font-size:1.8rem;color:var(--candle);text-shadow:0 0 20px rgba(212,164,57,.7);margin-bottom:18px}
+  .summon h2{font-size:1.8rem;margin-bottom:14px}
+  .summon p{font-style:italic;color:var(--ash);margin-bottom:30px;font-size:1.08rem}
+  .summon form{display:flex;gap:12px;max-width:440px;margin:0 auto}
+  .summon input{flex:1;padding:15px 18px;background:var(--abyss);border:1px solid var(--candle-dim);color:var(--candle);font-family:var(--body);font-size:1.05rem}
+  .summon input::placeholder{color:#5f5741;font-style:italic}
+  @media(max-width:560px){.summon form{flex-direction:column}}
+
+  footer{border-top:1px solid var(--vein);padding:50px 0 32px;font-size:.95rem;color:var(--ash)}
+  footer .row{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:center;margin-bottom:28px;font-family:var(--display);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase}
+  footer a:hover{color:var(--candle)}
+  footer .disc{text-align:center;font-size:.85rem;font-style:italic;line-height:1.9;max-width:840px;margin:0 auto;border-top:1px solid var(--vein);padding-top:24px}
+
+  .badge{position:fixed;bottom:16px;left:16px;background:var(--blood);color:var(--bone);font-family:var(--display);font-size:.62rem;letter-spacing:.2em;padding:10px 16px;z-index:99;border:1px solid var(--candle-dim);box-shadow:0 0 16px rgba(122,46,28,.6)}
+</style>
+</head>
+<body>
+<div class="badge">DIRECTION I · OCCULT</div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#"><img src="assets/logo-mark-color.svg" alt="Beer Scholar"><span>THE ARCANE ORDER</span></a>
+      <ul>
+        <li><a href="/beer-server">First Rite</a></li>
+        <li><a href="/certified-cicerone">Second Rite</a></li>
+        <li><a href="/ac-coaching">Third Rite</a></li>
+        <li><a href="/blog">Grimoire</a></li>
+        <li><a href="/login">Enter</a></li>
+      </ul>
+      <a class="btn btn-void" href="#study-guide" style="padding:11px 20px;font-size:.62rem">Free Scrolls</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="circle"></div>
+  <div class="wrap">
+    <div class="glyph">☾ ⁂ ☽</div>
+    <div class="kick">The Arcane Order of the</div>
+    <h1>BEER SCHOLAR<span class="whisper">seek · study · transmute · ascend</span></h1>
+    <p class="lead">Within these halls lie the forbidden syllabi, the tasting rites, and the flashcard incantations that have initiated thousands into the Cicerone® mysteries since the year of our founding, MMXIV.</p>
+    <div class="cta-row">
+      <a class="btn btn-candle" href="/certified-cicerone">Begin the Second Rite</a>
+      <a class="btn btn-void" href="/beer-server">Begin the First Rite</a>
+    </div>
+    <div class="vow"><b>99 of every 100</b> initiates survive the trials · so it is written</div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <div class="r"><b>99%</b><span>Survive the trials</span></div>
+    <div class="r"><b>4,400</b><span>Souls initiated</span></div>
+    <div class="r"><b>MMXIV</b><span>Order founded</span></div>
+    <div class="r"><b>III</b><span>Rites of passage</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">The Doctrine</div>
+      <h2>All Knowledge Required. No Knowledge Wasted.</h2>
+      <p>No tower of dusty tomes. No divination of what the examiners seek. One illuminated path from the profane to the certified.</p>
+    </div>
+    <div class="rites">
+      <div class="rite"><div class="sym">🕯</div><h3>The Illuminated Lessons</h3><p>Brief video teachings that trace the sacred syllabus sigil-by-sigil, at precisely the depth the trial demands — free of filler and false prophecy.</p></div>
+      <div class="rite"><div class="sym">⚗</div><h3>The Trials Rehearsed</h3><p>Full mock examinations mirroring the true ordeal, with flashcard incantations. Initiates of the Second Rite receive Brainscape decks forged by learned doctors.</p></div>
+      <div class="rite"><div class="sym">👁</div><h3>The Hierophant's Counsel</h3><p>Composed by Advanced Cicerone® Chris Cohen — the guide most Certified Cicerones consulted before facing their trials. Live communions weekly.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">Choose Thy Path</div>
+      <h2>The Three Rites of Ascension</h2>
+    </div>
+    <div class="tarot">
+      <div class="card">
+        <div class="inner">
+          <div class="numeral">RITE I</div>
+          <div class="sym">🍺</div>
+          <h3>The Apprentice</h3>
+          <div class="name">Certified Beer Server</div>
+          <ul>
+            <li>Syllabus-traced video teachings</li>
+            <li>A trial of knowledge after each lesson</li>
+            <li>Secrets for the day of reckoning</li>
+            <li>Five complete mock ordeals</li>
+          </ul>
+          <a class="btn btn-void" href="/beer-server">Take the First Rite</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="inner">
+          <div class="numeral">RITE II · MOST SOUGHT</div>
+          <div class="sym">⚜</div>
+          <h3>The Adept</h3>
+          <div class="name">Certified Cicerone® — $798</div>
+          <ul>
+            <li>The complete corpus + mock ordeals</li>
+            <li>Brainscape incantation decks</li>
+            <li>Weekly communions + the fellowship</li>
+            <li>All knowledge bound to the syllabus</li>
+          </ul>
+          <a class="btn btn-candle" href="/certified-cicerone">Take the Second Rite</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="inner">
+          <div class="numeral">RITE III</div>
+          <div class="sym">☿</div>
+          <h3>The Magus</h3>
+          <div class="name">Advanced Cicerone® — ascension assured</div>
+          <ul>
+            <li>Three moons of Bootcamp with Magus Fielder</li>
+            <li>Three moons of live communions</li>
+            <li>Two complete AC mock ordeals</li>
+            <li>Direct audience with Chris &amp; Scott</li>
+          </ul>
+          <a class="btn btn-void" href="/ac-coaching">Take the Third Rite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hier">
+  <div class="wrap">
+    <div class="portrait"><img src="assets/chris.png" alt="The Hierophant, Chris Cohen"></div>
+    <div>
+      <div class="kick">The Hierophant</div>
+      <h2>He Who Walked the Path Before You</h2>
+      <p>I too once knelt before the thin and cryptic syllabus, over-prepared and trembling, wishing some elder had revealed <em>what to study, to what depth, and how to survive the tasting ordeal.</em> None had. So upon my ascension, I inscribed the path myself.</p>
+      <p>Since MMXIV, the vast majority of Certified Cicerones® have followed these teachings through the veil.</p>
+      <div class="titles">Advanced Cicerone® ✦ National BJCP Judge ✦ Attorney of the Mortal Courts (Esq.) ✦ Co-founder, SF Homebrewer's Guild</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">The Prophecies Fulfilled</div>
+      <h2>Words of the Ascended</h2>
+    </div>
+    <div class="proph">
+      <div class="pcard"><div class="q">"The practice exams alone are worth every penny — I passed with a 93% and it really boosted my confidence."</div><div class="who">Michele Best-Miller</div><div class="role">Apprentice, ascended · Burlington, WA</div></div>
+      <div class="pcard"><div class="q">"It helped me smoke the exam like the people of Bamberg smoke their malt over beechwood."</div><div class="who">Graham Frizzell</div><div class="role">Adept, ascended · Perth, Australia</div></div>
+      <div class="pcard"><div class="q">"Beer Scholar took the intimidation out of studying and gave me a clear path of learning and expectations."</div><div class="who">Lauren Lerch</div><div class="role">Adept, ascended · Salt Lake City, UT</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div class="kick">From the Grimoire</div>
+      <h2>Recent Entries</h2>
+    </div>
+    <div class="grim">
+      <a class="gitem" href="/blog/brews-for-new-avenues-auction-beervana-vacation">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/d47a6f-1df8-1264-a55-a378856225c3_Image_8-15-24_at_8.15_AM.jpg" alt="" loading="lazy"></div>
+        <div class="c"><div class="k">Chronicle</div><h3>Brews For New Avenues X Beer Scholar collab auction: a beer-soaked weekend in Portland, OR!</h3></div>
+      </a>
+      <a class="gitem" href="/blog/cup-cicerone-uses-for-tasting-exam">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/8845447-8d54-dd0b-c4a4-f40cef501ca_Cup_Cicerone_uses_exam.png" alt="" loading="lazy"></div>
+        <div class="c"><div class="k">The Vessels</div><h3>What cups does Cicerone® use on exams?</h3></div>
+      </a>
+      <a class="gitem" href="/blog/advanced-cicerone-study-coaching">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/0b233e-2b74-77b7-b613-2458cd4620_The_AC_Coaching_Program_flow_-_Blog_Thumb.png" alt="" loading="lazy"></div>
+        <div class="c"><div class="k">The Third Rite</div><h3>What does the Advanced Cicerone® Coaching Program look like?</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="summon" id="study-guide">
+  <div class="wrap">
+    <div class="box">
+      <div class="glyph">✦ ☽ ✦</div>
+      <h2>Summon the Free Scrolls</h2>
+      <p>Inscribe your electronic sigil below, and the Order shall dispatch free CBS &amp; CC preparatory scrolls — with the Six Pack epistle, delivered by moonlight.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('input').value='The ravens fly. Watch your inbox.'">
+        <input type="email" placeholder="thy sigil (email)..." required>
+        <button class="btn btn-candle" type="submit">Invoke</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a href="/beer-server">CBS</a><a href="/certified-cicerone">CC</a><a href="/ac-coaching">AC</a><a href="/employee-staff-group-training">Staff Training</a><a href="/about">About</a><a href="/blog">Blog</a><a href="/six-pack-newsletter">Six Pack</a><a href="/faq">FAQ</a><a href="/contact">Contact</a><a href="/login">Log In</a><a href="/terms-of-service">Terms</a><a href="/privacy-policy">Privacy</a>
+    </div>
+    <div class="disc">The Arcane Order of the Beer Scholar is not affiliated with, endorsed by, or sponsored by the Cicerone® Certification Program — nor any other earthly or unearthly power. Cicerone®, Certified Cicerone®, and Advanced Cicerone® are registered trademarks of the Craft Beer Institute. © Beer Scholar LLC &amp; Christopher Cohen, Esq. All rights reserved, in this realm and the next.</div>
+  </div>
+</footer>
+<a href="https://forms.gle/rczfMPLLCZUmVCdf6" target="_blank" rel="noopener" style="position:fixed;bottom:20px;right:20px;z-index:999;background:#d4a439;color:#0b0a08;font-family:'Cinzel',serif;font-weight:600;font-size:.72rem;letter-spacing:.1em;padding:14px 22px;box-shadow:0 0 24px rgba(212,164,57,.5);text-decoration:none;">💬 SPEAK THY MIND</a>
+</body>
+</html>
