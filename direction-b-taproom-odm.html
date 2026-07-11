@@ -45,7 +45,7 @@
   /* HERO — full-bleed ODM bar photo, amber glow */
   .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
   /* square photo has Chris dead-center — shift the image layer right so he sits beside the text, like F */
-  .hero .bg{position:absolute;top:0;bottom:0;left:16%;right:-16%;background:url("assets/chris-odm.jpg") 50% 22%/cover no-repeat}
+  .hero .bg{position:absolute;top:0;bottom:0;left:16%;right:-16%;background:url("assets/chris-odm.jpg") 50% 22%/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 42%);mask-image:linear-gradient(90deg,transparent 0,#000 42%)}
   .hero .tint{position:absolute;inset:0;background:linear-gradient(75deg,rgba(1,29,41,.97) 8%,rgba(1,41,58,.86) 45%,rgba(1,41,58,.30) 100%)}
   @media(max-width:860px){.hero .bg{left:0;right:0}}
   .hero .glow{position:absolute;left:-180px;top:20%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,168,60,.16),transparent 65%)}
@@ -164,9 +164,9 @@
     <nav>
       <a class="logo" href="#"><img src="assets/logo-full-white.svg" alt="Beer Scholar"></a>
       <ul>
-        <li><a href="/certified-cicerone">Certified Cicerone</a></li>
-        <li><a href="/beer-server">Beer Server</a></li>
-        <li><a href="/ac-coaching">Advanced Cicerone</a></li>
+        <li><a href="/certified-cicerone">Certified Cicerone® Course</a></li>
+        <li><a href="/beer-server">Beer Server Course</a></li>
+        <li><a href="/ac-coaching">Advanced Cicerone® Course</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/blog">Blog</a></li>
       </ul>
@@ -185,7 +185,7 @@
   <div class="wrap">
     <div class="inner">
       <div class="eyebrow">Beer Scholar · est. 2014</div>
-      <h1>Courses for <em>crushing</em><br>the Cicerone®&nbsp;exams.</h1>
+      <h1 style="text-transform:lowercase"><em>crush the<br>cicerone</em> exams</h1>
       <p class="lead">Exam-focused Cicerone® courses and coaching from Advanced Cicerone® Chris Cohen — the study material behind most of the world's Certified Cicerones®.</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="/certified-cicerone">Prep for the Certified Cicerone Exam</a>
@@ -230,7 +230,7 @@
     </div>
     <div class="pgrid">
       <div class="pill"><div class="k">01 · Learn</div><h3>Fast &amp; focused lessons</h3><p>Short video lessons that track the syllabus topic-by-topic, at the exact depth the exam tests — no filler, no over-reading.</p></div>
-      <div class="pill"><div class="k">02 · Drill</div><h3>Practice tests &amp; flashcards</h3><p>Several full practice exams that mirror the real thing, plus flashcard decks. CC students get Brainscape decks designed by PhDs.</p></div>
+      <div class="pill"><div class="k">02 · Drill</div><h3>Practice tests &amp; flashcards</h3><p>Several full practice exams that mirror the real thing, plus full flashcard decks covering every syllabus topic.</p></div>
       <div class="pill"><div class="k">03 · Pass</div><h3>Expert in your corner</h3><p>Exam-day strategy, tasting exam prep, and live Q&amp;As with an Advanced Cicerone® who's taken every one of these tests.</p></div>
     </div>
   </div>
@@ -245,7 +245,7 @@
     <div class="cgrid">
       <div class="ccard">
         <div class="lvl">Level 1</div>
-        <h3>Certified Beer Server</h3>
+        <h3>Certified Beer Server Course</h3>
         <div class="note">Knock it out in a day or two</div>
         <ul>
           <li>Short video lessons, syllabus-tracked</li>
@@ -257,11 +257,11 @@
       </div>
       <div class="ccard feat">
         <div class="lvl">Level 2 · Most popular</div>
-        <h3>Certified Cicerone®</h3>
-        <div class="note">The flagship course — $798</div>
+        <h3>Certified Cicerone® Course</h3>
+        <div class="note">Everything for the CC exam — $798</div>
         <ul>
           <li>Complete video course + practice tests</li>
-          <li>Brainscape flashcard decks (PhD-designed)</li>
+          <li>Flashcard decks for every syllabus topic</li>
           <li>Weekly live Q&amp;As + community</li>
           <li>Everything organized to the syllabus</li>
         </ul>
@@ -269,15 +269,15 @@
       </div>
       <div class="ccard">
         <div class="lvl">Level 3</div>
-        <h3>Advanced Cicerone®</h3>
-        <div class="note">Coaching · we guarantee you pass</div>
+        <h3>Advanced Cicerone® Course</h3>
+        <div class="note">Complete course · we guarantee you pass</div>
         <ul>
-          <li>3-month AC Bootcamp with AC Scott Fielder</li>
-          <li>3 months of live Q&amp;As</li>
+          <li>Recorded classes — some by Master Cicerone Scott Fielder</li>
+          <li>Weekly live tastings &amp; Q&amp;As</li>
           <li>2 full practice AC exams</li>
-          <li>Direct access to Chris &amp; Scott</li>
+          <li>Direct access to Chris &amp; AC Matthew Shapiro</li>
         </ul>
-        <a class="btn btn-ghost" href="/ac-coaching">Explore AC coaching</a>
+        <a class="btn btn-ghost" href="/ac-coaching">Explore the AC course</a>
       </div>
     </div>
   </div>
@@ -293,7 +293,7 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="tgrid">
-      <div class="tcard"><div class="stars">★★★★★</div><div class="quote">"The practice exams alone are worth every penny — I passed with a 93% and it really boosted my confidence."</div><div class="who">Michele Best-Miller</div><div class="role">CBS · Burlington, WA</div></div>
+      <div class="tcard"><div class="stars">★★★★★</div><div class="quote">"The practice exams alone are worth every penny — I passed with a 93% and it really boosted my confidence."</div><div class="who">Michele Best-Miller</div><div class="role">Advanced Cicerone · Burlington, WA</div></div>
       <div class="tcard"><div class="stars">★★★★★</div><div class="quote">"Beer Scholar took the intimidation out of studying and gave me a clear path of learning and expectations."</div><div class="who">Lauren Lerch</div><div class="role">Certified Cicerone · Salt Lake City, UT</div></div>
       <div class="tcard"><div class="stars">★★★★★</div><div class="quote">"When someone asks me what materials they need to prepare for the exam, Beer Scholar is at the top of my list."</div><div class="who">David Nilsen</div><div class="role">Advanced Cicerone · Dayton, OH</div></div>
     </div>
@@ -317,7 +317,7 @@
       </a>
       <a class="bpost" href="/blog/advanced-cicerone-study-coaching">
         <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/0b233e-2b74-77b7-b613-2458cd4620_The_AC_Coaching_Program_flow_-_Blog_Thumb.png" alt="AC Coaching Program" loading="lazy"></div>
-        <div class="c"><div class="date">Advanced Cicerone</div><h3>What does the Advanced Cicerone® Coaching Program look like?</h3></div>
+        <div class="c"><div class="date">AC Exam Prep</div><h3>What does the Advanced Cicerone® Coaching Program look like?</h3></div>
       </a>
     </div>
     <div style="margin-top:32px"><a class="btn btn-ghost" href="/blog">Read all articles</a></div>
@@ -343,7 +343,7 @@
         <img src="assets/logo-full-white.svg" alt="Beer Scholar">
         <p style="max-width:280px">Online courses and coaching for crushing the Cicerone® Certification Program exams. Educating beer professionals since 2014.</p>
       </div>
-      <div><h4>Courses</h4><ul><li><a href="/beer-server">Certified Beer Server</a></li><li><a href="/certified-cicerone">Certified Cicerone</a></li><li><a href="/ac-coaching">Advanced Cicerone</a></li><li><a href="/employee-staff-group-training">Staff Training</a></li></ul></div>
+      <div><h4>Courses</h4><ul><li><a href="/beer-server">Beer Server Course</a></li><li><a href="/certified-cicerone">Certified Cicerone® Course</a></li><li><a href="/ac-coaching">Advanced Cicerone® Course</a></li><li><a href="/employee-staff-group-training">Staff Training</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/six-pack-newsletter">Six Pack Newsletter</a></li><li><a href="/faq">FAQ</a></li><li><a href="/contact">Contact</a></li></ul></div>
       <div><h4>Account</h4><ul><li><a href="/login">Log in</a></li><li><a href="/free-resources">Free Resources</a></li><li><a href="/terms-of-service">Terms</a></li><li><a href="/privacy-policy">Privacy</a></li></ul></div>
     </div>
