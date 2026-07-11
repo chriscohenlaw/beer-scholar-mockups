@@ -44,8 +44,10 @@
 
   /* HERO — full-bleed ODM bar photo, amber glow */
   .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
-  .hero .bg{position:absolute;inset:0;background:url("assets/chris-odm.jpg") 68% 22%/cover no-repeat}
-  .hero .tint{position:absolute;inset:0;background:linear-gradient(78deg,rgba(1,29,41,.97) 12%,rgba(1,41,58,.88) 46%,rgba(1,41,58,.34) 100%)}
+  /* square photo has Chris dead-center — shift the image layer right so he sits beside the text, like F */
+  .hero .bg{position:absolute;top:0;bottom:0;left:16%;right:-16%;background:url("assets/chris-odm.jpg") 50% 22%/cover no-repeat}
+  .hero .tint{position:absolute;inset:0;background:linear-gradient(75deg,rgba(1,29,41,.97) 8%,rgba(1,41,58,.86) 45%,rgba(1,41,58,.30) 100%)}
+  @media(max-width:860px){.hero .bg{left:0;right:0}}
   .hero .glow{position:absolute;left:-180px;top:20%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,168,60,.16),transparent 65%)}
   .hero .wrap{position:relative;z-index:2;padding:90px 28px}
   .hero .inner{max-width:600px}
@@ -72,12 +74,11 @@
   .head h2{font-size:clamp(2rem,3.6vw,2.8rem);margin:14px 0 16px}
   .head p{font-size:1.08rem;color:var(--dim)}
 
-  /* STORY — the cutout on a coaster card */
+  /* STORY — editorial photo, matches F */
   .story .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
-  .story .polaroid{background:#f7f2e5;padding:18px 18px 26px;border-radius:4px;transform:rotate(-1.6deg);box-shadow:0 24px 60px rgba(0,0,0,.5);position:relative}
-  .story .polaroid img{width:100%;border-radius:2px}
-  .story .polaroid .cap{font-size:.86rem;color:#54604f;font-weight:700;text-align:center;margin-top:14px;letter-spacing:.04em}
-  .story .polaroid:after{content:"";position:absolute;inset:0;border:1px solid rgba(243,198,69,.35);border-radius:4px;transform:translate(16px,16px);pointer-events:none;z-index:-1}
+  .story .photo{position:relative}
+  .story .photo img{width:100%;height:460px;object-fit:cover;object-position:58% 26%;border-radius:6px}
+  .story .photo:after{content:"";position:absolute;inset:0;border:1px solid rgba(243,198,69,.35);border-radius:6px;transform:translate(14px,14px);pointer-events:none}
   .story h2{font-size:2.2rem;margin:14px 0 20px}
   .story p{color:var(--txt);font-size:1.04rem;margin-bottom:16px}
   .story p b{color:var(--amber)}
@@ -184,7 +185,7 @@
   <div class="wrap">
     <div class="inner">
       <div class="eyebrow">Beer Scholar · est. 2014</div>
-      <h1>Learn beer from<br>a guy who <em>poured it</em><br>for a living.</h1>
+      <h1>Courses for <em>crushing</em><br>the Cicerone®&nbsp;exams.</h1>
       <p class="lead">Exam-focused Cicerone® courses and coaching from Advanced Cicerone® Chris Cohen — the study material behind most of the world's Certified Cicerones®.</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="/certified-cicerone">Prep for the Certified Cicerone Exam</a>
@@ -207,10 +208,7 @@
 
 <section class="story">
   <div class="wrap">
-    <div class="polaroid">
-      <img src="assets/chris-odm-cutout.jpg" alt="Chris Cohen pouring an Almanac pilsner">
-      <div class="cap">Six years behind the taps at Old Devil Moon, SF</div>
-    </div>
+    <div class="photo"><img src="assets/chris.png" alt="Chris Cohen, Advanced Cicerone, raising a glass"></div>
     <div>
       <div class="eyebrow">Your guide</div>
       <h2>I didn't just study beer. I sold it, served it, and judged it.</h2>
