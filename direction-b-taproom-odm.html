@@ -375,6 +375,8 @@
 </footer>
 <script>
 /* Easter egg: analog channel-change → 8-bit site. Pure canvas, no assets. */
+/* Back-button fix: bfcache restores the page with the overlay still in it — remove it */
+window.addEventListener('pageshow',function(){var o=document.getElementById('crt-ov');if(o)o.remove();});
 document.getElementById('px-glass').addEventListener('click',function(){
   if(document.getElementById('crt-ov'))return;
   var ov=document.createElement('div');
