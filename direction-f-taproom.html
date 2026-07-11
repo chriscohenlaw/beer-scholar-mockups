@@ -50,9 +50,10 @@
   .hero .glow{position:absolute;left:-180px;top:20%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,168,60,.16),transparent 65%)}
   .hero .wrap{position:relative;z-index:2;padding:90px 28px}
   .hero .inner{max-width:620px}
-  .hero h1{font-size:clamp(2.7rem,5.8vw,4.6rem);margin:20px 0 22px}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.4rem);margin:20px 0 22px}
   .hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--yellow),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero .lead{font-size:1.22rem;color:var(--txt);font-weight:500;margin-bottom:34px;max-width:540px}
+  .hero .sub{font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:10px}
+  .hero .lead{font-size:1.13rem;color:var(--txt);font-weight:500;margin-bottom:34px;max-width:540px}
   .hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}
   .hero .cred{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700}
   .hero .cred b{color:var(--amber)}
@@ -134,8 +135,9 @@
   .optin .wrap{text-align:center;max-width:620px}
   .optin h2{font-size:2.1rem;margin:12px 0 14px}
   .optin p{color:var(--dim);font-size:1.03rem;margin-bottom:28px}
-  .optin form{display:flex;gap:10px;max-width:470px;margin:0 auto}
-  .optin input{flex:1;padding:15px 18px;border-radius:4px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:1rem}
+  .optin form{display:flex;flex-direction:column;gap:10px;max-width:470px;margin:0 auto}
+  .optin input,.optin select{flex:1;padding:15px 18px;border-radius:4px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:1rem}
+  .optin select option{color:#02394F;background:#fff}
   .optin input::placeholder{color:var(--dim)}
   @media(max-width:560px){.optin form{flex-direction:column}}
 
@@ -161,9 +163,7 @@
     <nav>
       <a class="logo" href="#"><img src="assets/logo-full-white.svg" alt="Beer Scholar"></a>
       <ul>
-        <li><a href="/certified-cicerone">Certified Cicerone® Course</a></li>
-        <li><a href="/beer-server">Beer Server Course</a></li>
-        <li><a href="/ac-coaching">Advanced Cicerone® Course</a></li>
+        <li><a href="#courses">Courses</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/blog">Blog</a></li>
       </ul>
@@ -182,13 +182,14 @@
   <div class="wrap">
     <div class="inner">
       <div class="eyebrow">Beer Scholar · est. 2014</div>
-      <h1>Know beer.<br><em>Prove it.</em></h1>
-      <p class="lead">Exam-focused courses and coaching from Advanced Cicerone® Chris Cohen — the study material behind most of the world's Certified Cicerones®.</p>
+      <h1>courses for learning beer<br><em>&amp; crushing the<br>cicerone exams</em></h1>
+      <div class="sub">Pass on your first take.</div>
+      <p class="lead">Since 2014, Beer Scholar has been the most organized, exam-focused study material on the market. Everything you need, at the exact right depth. Nothing you don't.</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="/certified-cicerone">Prep for the Certified Cicerone Exam</a>
         <a class="btn btn-ghost" href="/beer-server">Start with Beer Server</a>
       </div>
-      <div class="cred"><b>99% pass rate</b> · Advanced Cicerone® · National BJCP Judge · Attorney</div>
+      <div class="cred">With Chris Cohen, Advanced Cicerone® &amp; National BJCP Judge</div>
     </div>
   </div>
 </section>
@@ -221,7 +222,7 @@
   <div class="wrap">
     <div class="head">
       <div class="eyebrow">The method</div>
-      <h2>Everything you need to pass. Nothing you don't.</h2>
+      <h2>Everything you need to pass, in one well-organized place.</h2>
       <p>No stack of textbooks. No guessing what's on the exam. A clear, syllabus-tracking path from where you are to certified.</p>
     </div>
     <div class="pgrid">
@@ -252,13 +253,13 @@
         <a class="btn btn-ghost" href="/beer-server">Prep for the CBS exam</a>
       </div>
       <div class="ccard feat">
-        <div class="lvl">Level 2 · Most popular</div>
+        <div class="lvl">Level 2</div>
         <h3>Certified Cicerone® Course</h3>
-        <div class="note">Everything for the CC exam — $798</div>
+        <div class="note">Everything you need to crush the CC exam</div>
         <ul>
           <li>Complete video course + practice tests</li>
           <li>Flashcard decks for every syllabus topic</li>
-          <li>Weekly live Q&amp;As + community</li>
+          <li>Weekly live tastings, Q&amp;As + community</li>
           <li>Everything organized to the syllabus</li>
         </ul>
         <a class="btn btn-gold" href="/certified-cicerone">Prep for the CC exam</a>
@@ -268,7 +269,7 @@
         <h3>Advanced Cicerone® Course</h3>
         <div class="note">Complete course · we guarantee you pass</div>
         <ul>
-          <li>Recorded classes — some by Master Cicerone Scott Fielder</li>
+          <li>Lessons recorded by Advanced and Master Cicerones</li>
           <li>Weekly live tastings &amp; Q&amp;As</li>
           <li>2 full practice AC exams</li>
           <li>Direct access to Chris &amp; AC Matthew Shapiro</li>
@@ -303,17 +304,17 @@
       <h2>From the Beer Scholar blog.</h2>
     </div>
     <div class="blist">
-      <a class="bpost" href="/blog/brews-for-new-avenues-auction-beervana-vacation">
-        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/d47a6f-1df8-1264-a55-a378856225c3_Image_8-15-24_at_8.15_AM.jpg" alt="Brews For New Avenues auction" loading="lazy"></div>
-        <div class="c"><div class="date">Beer Community</div><h3>Brews For New Avenues X Beer Scholar collab auction: a beer-soaked weekend in Portland, OR!</h3></div>
+      <a class="bpost" href="/blog/cost-of-becoming-a-certified-cicerone">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/sites/2147564320/images/3b80db-bf5-bd7a-6c8f-df8041a50_a81d7e1e-7b31-4062-9ee0-6e0b456c09f1.png" alt="How much does it cost to become a Certified Cicerone?" loading="lazy"></div>
+        <div class="c"><div class="date">Study Tips</div><h3>How much does it cost to become a Certified Cicerone?</h3></div>
       </a>
       <a class="bpost" href="/blog/cup-cicerone-uses-for-tasting-exam">
         <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/8845447-8d54-dd0b-c4a4-f40cef501ca_Cup_Cicerone_uses_exam.png" alt="Cicerone tasting exam cups" loading="lazy"></div>
         <div class="c"><div class="date">Exam Advice</div><h3>What cups does Cicerone® use on exams?</h3></div>
       </a>
-      <a class="bpost" href="/blog/advanced-cicerone-study-coaching">
-        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/0b233e-2b74-77b7-b613-2458cd4620_The_AC_Coaching_Program_flow_-_Blog_Thumb.png" alt="AC Coaching Program" loading="lazy"></div>
-        <div class="c"><div class="date">AC Exam Prep</div><h3>What does the Advanced Cicerone® Coaching Program look like?</h3></div>
+      <a class="bpost" href="/blog/these-are-the-books-you-need-to-read-to-become-a-beer-expert-pass-the-certified-cicerone-exam">
+        <div class="ph"><img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147509620/images/1b70137-1e27-1e37-b08c-58e7ca3b7_image.png" alt="The books you need to read to pass the Certified Cicerone exam" loading="lazy"></div>
+        <div class="c"><div class="date">Study Material</div><h3>These are the books you need to read to become a beer expert (&amp; pass the Certified Cicerone exam)</h3></div>
       </a>
     </div>
     <div style="margin-top:32px"><a class="btn btn-ghost" href="/blog">Read all articles</a></div>
@@ -327,6 +328,13 @@
     <p>Join the mailing list and we'll send you free CBS &amp; CC prep starters, plus the Six Pack newsletter.</p>
     <form onsubmit="event.preventDefault();this.querySelector('input').value='Thanks! Check your inbox.'">
       <input type="email" placeholder="you@email.com" required>
+      <select required aria-label="Which exam are you studying for?">
+        <option value="" disabled selected>Which exam are you studying for?</option>
+        <option>Certified Beer Server exam</option>
+        <option>Certified Cicerone® exam</option>
+        <option>Advanced Cicerone® exam</option>
+        <option>Just exploring for now</option>
+      </select>
       <button class="btn btn-gold" type="submit">Send me access</button>
     </form>
   </div>
