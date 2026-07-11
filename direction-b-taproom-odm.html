@@ -33,7 +33,7 @@
   /* NAV */
   header{position:sticky;top:0;z-index:50;background:rgba(1,29,41,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav{display:flex;align-items:center;justify-content:space-between;height:78px}
-  nav .logo img{height:58px}
+  nav .logo img{height:68px}
   nav ul{display:flex;gap:28px;list-style:none;align-items:center}
   nav ul a{color:var(--txt);font-weight:600;font-size:.88rem;letter-spacing:.03em}
   nav ul a:hover{color:var(--amber)}
@@ -374,15 +374,63 @@
   </div>
 </footer>
 <script>
+/* Easter egg: analog channel-change → 8-bit site. Pure canvas, no assets. */
 document.getElementById('px-glass').addEventListener('click',function(){
-  var st=document.createElement('style');
-  st.textContent='@keyframes crtoff{0%{opacity:0}15%{opacity:1}25%{opacity:.15}40%{opacity:1}55%{opacity:.35}70%{opacity:1}100%{opacity:1}}';
-  document.head.appendChild(st);
-  var o=document.createElement('div');
-  o.style.cssText='position:fixed;inset:0;background:#0f0f12;z-index:99999;animation:crtoff .5s steps(4) forwards;display:flex;align-items:center;justify-content:center;color:#F3C645;font-family:monospace;font-size:14px;letter-spacing:.2em';
-  o.textContent='LOADING WORLD 1-1 …';
-  document.body.appendChild(o);
-  setTimeout(function(){location.href='direction-h-8bit.html'},520);
+  if(document.getElementById('crt-ov'))return;
+  var ov=document.createElement('div');
+  ov.id='crt-ov';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#000;overflow:hidden';
+  var cv=document.createElement('canvas');
+  cv.width=160;cv.height=120; /* low-res, scaled up = chunky analog snow */
+  cv.style.cssText='width:100%;height:100%;image-rendering:pixelated';
+  ov.appendChild(cv);
+  var scan=document.createElement('div'); /* CRT scanlines */
+  scan.style.cssText='position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px)';
+  ov.appendChild(scan);
+  var msg=document.createElement('div');
+  msg.textContent='LOADING WORLD 1-1 …';
+  msg.style.cssText='position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#F3C645;font-family:monospace;font-size:14px;letter-spacing:.2em;text-shadow:0 0 8px rgba(243,198,69,.9);opacity:0';
+  ov.appendChild(msg);
+  document.body.appendChild(ov);
+  var ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height,img=ctx.createImageData(W,H),d=img.data;
+  var t0=performance.now(),DUR=1000,roll=0;
+  var tints=[[255,80,80],[80,255,120],[90,140,255],[243,198,69],[255,120,220]];
+  function frame(now){
+    var p=Math.min((now-t0)/DUR,1);
+    /* snow */
+    for(var i=0;i<d.length;i+=4){
+      var v=Math.random()*255|0;
+      d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=255;
+    }
+    ctx.putImageData(img,0,0);
+    /* chroma out of lock: color bands rolling down the tube */
+    roll=(roll+6)%(H+40);
+    for(var b=0;b<3;b++){
+      var y=(roll+b*46)%(H+40)-20;
+      var t=tints[(b+(now/130|0))%tints.length];
+      ctx.fillStyle='rgba('+t[0]+','+t[1]+','+t[2]+',.30)';
+      ctx.fillRect(0,y,W,12+b*7);
+    }
+    /* horizontal hold slipping: tear a random slice sideways */
+    var ty=Math.random()*H|0,th=4+(Math.random()*10|0),dx=(Math.random()*26-13)|0;
+    ctx.drawImage(cv,0,ty,W,th,dx,ty,W,th);
+    /* occasional whole-frame color flash */
+    if(Math.random()<.14){
+      var f=tints[Math.random()*tints.length|0];
+      ctx.fillStyle='rgba('+f[0]+','+f[1]+','+f[2]+',.12)';
+      ctx.fillRect(0,0,W,H);
+    }
+    /* picture starts tuning in: snow dims + message flickers through */
+    if(p>.5){
+      ctx.fillStyle='rgba(0,0,0,'+((p-.5)*1.4)+')';
+      ctx.fillRect(0,0,W,H);
+      msg.style.opacity=(Math.random()<.8?1:.3);
+    }
+    if(p<1){requestAnimationFrame(frame);}
+    else{try{sessionStorage.setItem('bs-tune','1')}catch(e){}location.href='direction-h-8bit.html';}
+  }
+  requestAnimationFrame(frame);
 });
 </script>
 <a href="https://forms.gle/rczfMPLLCZUmVCdf6" target="_blank" rel="noopener" style="position:fixed;bottom:20px;right:20px;z-index:999;background:#AE841F;color:#fff;font-family:Raleway,system-ui,sans-serif;font-weight:800;font-size:.92rem;padding:13px 22px;border-radius:40px;box-shadow:0 6px 20px rgba(0,0,0,.32);text-decoration:none;">💬 Give feedback</a>

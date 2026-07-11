@@ -339,5 +339,32 @@
   </div>
 </footer>
 <a href="https://forms.gle/rczfMPLLCZUmVCdf6" target="_blank" rel="noopener" style="position:fixed;bottom:20px;right:20px;z-index:999;background:#F3C645;color:#0f0f12;font-family:'Press Start 2P',monospace;font-size:9px;padding:14px 18px;border:3px solid #fffef2;box-shadow:4px 4px 0 #0f0f12;text-decoration:none;">💬 FEEDBACK</a>
+<script>
+/* Channel tunes in: brief snow dissolve when arriving via the easter egg */
+(function(){
+  try{if(!sessionStorage.getItem('bs-tune'))return;sessionStorage.removeItem('bs-tune');}catch(e){return;}
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#000;overflow:hidden;pointer-events:none';
+  var cv=document.createElement('canvas');
+  cv.width=160;cv.height=120;
+  cv.style.cssText='width:100%;height:100%;image-rendering:pixelated';
+  ov.appendChild(cv);
+  document.body.appendChild(ov);
+  var ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height,img=ctx.createImageData(W,H),d=img.data;
+  var t0=performance.now(),DUR=450;
+  function frame(now){
+    var p=Math.min((now-t0)/DUR,1);
+    for(var i=0;i<d.length;i+=4){
+      var v=Math.random()*255|0;
+      d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=255;
+    }
+    ctx.putImageData(img,0,0);
+    ov.style.opacity=String(1-p); /* snow dissolves, picture locks in */
+    if(p<1){requestAnimationFrame(frame);}else{ov.remove();}
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
